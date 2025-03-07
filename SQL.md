@@ -1,30 +1,30 @@
 # SQL Notes
 
-## Database
+## Database :
 A database is a collection of data in a format that can be easily accessed (digital). A software application used to manage our database is called a DBMS (Database Management System).
 
-## Types of Databases
+## Types of Databases :
 ### Relational
 Data stored in tables. Examples include MySQL, Oracle, SQL Server, and PostgreSQL.
 
 ### Non-relational (NoSQL)
 Data not stored in tables. Example: MongoDB.
 
-## What is SQL?
+## What is SQL :
 SQL stands for Structured Query Language. It is a programming language used to interact with relational databases. It is used to perform CRUD operations:
 - Create
 - Read
 - Update
 - Delete
 
-## Database Structure
+## Database Structure :
 - Database
   - Table 1
     - Data
   - Table 2
     - Data
 
-## What is a Table?
+## What is a Table :
 ### Example: Student Table
 | RollNo | Name    | Class | DOB        | Gender | City   | Marks |
 |--------|---------|-------|------------|--------|--------|-------|
@@ -37,25 +37,15 @@ SQL stands for Structured Query Language. It is a programming language used to i
 | 7      | Ahnaf    | X     | 1995-12-08 | F      | Moscow | 377   |
 | 8      | Rifat | X     | 1995-06-12 | M      | Moscow | 489   |
 
-## Creating our First Database
+## Creating our First Database :
 ```sql
 CREATE DATABASE db_name;  -- Creates a new database
 DROP DATABASE db_name;    -- Deletes an existing database
 ```
 
-## Creating our First Table
+## Creating our First Table :
 
 #### Format :
-```sql
-USE db_name;  -- Selects the database to use
-
-CREATE TABLE table_name (
-    column_name1 datatype constraint,  -- Defines the first column with its data type and constraints
-    column_name2 datatype constraint,  -- Defines the second column with its data type and constraints
-    column_name3 datatype constraint   -- Defines the third column with its data type and constraints
-);
-```
-#### Example :
 ```sql
 USE db_name;  -- Selects the database to use
 
@@ -66,7 +56,7 @@ CREATE TABLE student (
 );
 ```
 
-## SQL Datatypes
+## SQL Datatypes :
 | DATATYPE | DESCRIPTION | USAGE |
 |----------|-------------|-------|
 | CHAR     | string(0-255), fixed length | CHAR(50) |
@@ -82,14 +72,14 @@ CREATE TABLE student (
 | DATE     | date in format YYYY-MM-DD | DATE |
 | YEAR     | year in 4 digits format | YEAR |
 
-## Types of SQL Commands
+## Types of SQL Commands :
 - **DDL (Data Definition Language)**: CREATE, ALTER, RENAME, TRUNCATE, DROP
 - **DQL (Data Query Language)**: SELECT
 - **DML (Data Manipulation Language)**: SELECT, INSERT, UPDATE, DELETE
 - **DCL (Data Control Language)**: GRANT, REVOKE
 - **TCL (Transaction Control Language)**: START TRANSACTION, COMMIT, ROLLBACK
 
-## Database Related Queries
+## Database Related Queries :
 ```sql
 CREATE DATABASE db_name;  -- Creates a new database
 CREATE DATABASE IF NOT EXISTS db_name;  -- Creates a new database only if it does not already exist
@@ -99,7 +89,7 @@ SHOW DATABASES;  -- Lists all databases
 SHOW TABLES;  -- Lists all tables in the current database
 ```
 
-## Table Related Queries
+## Table Related Queries :
 ### Create Table
 ```sql
 CREATE TABLE student (
@@ -121,7 +111,7 @@ VALUES (101, "Rijaon"),              -- Inserts the first row of data
        (102, "Saif");              -- Inserts the second row of data
 ```
 
-## Keys
+## Keys :
 ### Primary Key
 A column (or set of columns) in a table that uniquely identifies each row. There is only one primary key, and it should be NOT NULL.
 
@@ -151,7 +141,7 @@ CREATE TABLE city (
 );
 ```
 
-## Sample Table Creation
+## Sample Table Creation :
 ```sql
 CREATE DATABASE college;  -- Creates a new database named 'college'
 USE college;  -- Selects the 'college' database
@@ -173,7 +163,7 @@ VALUES (101, "anil", 78, "C", "Pune"),                 -- Inserts the first row 
        (106, "farah", 82, "B", "Dhaka");               -- Inserts the sixth row of data
 ```
 
-## Select in Detail
+## Select in Detail :
 ```sql
 SELECT col1, col2 FROM table_name;  -- Selects specific columns from the specified table
 SELECT * FROM table_name;           -- Selects all columns from the specified table
@@ -188,7 +178,7 @@ SELECT * FROM student WHERE marks > 80;  -- Selects all columns from 'student' w
 SELECT * FROM student WHERE city = "Mumbai";  -- Selects all columns from 'student' where city is "Mumbai"
 ```
 
-## Operators in WHERE Clause
+## Operators in WHERE Clause :
 - **Arithmetic Operators**: +, -, *, /, %
 - **Comparison Operators**: =, !=, >, >=, <, <=
 - **Logical Operators**: AND, OR, NOT, IN, BETWEEN, ALL, LIKE, ANY
@@ -203,18 +193,18 @@ SELECT * FROM student WHERE city IN ("Dhaka", "Mumbai");     -- Selects rows whe
 SELECT * FROM student WHERE city NOT IN ("Dhaka", "Mumbai"); -- Selects rows where city is neither "Dhaka" nor "Mumbai"
 ```
 
-## Limit Clause
+## Limit Clause :
 ```sql
 SELECT * FROM student LIMIT 3;  -- Selects the first 3 rows from the 'student' table
 ```
 
-## Order By Clause
+## Order By Clause :
 ```sql
 SELECT * FROM student
 ORDER BY city ASC;  -- Orders the rows by the 'city' column in ascending order
 ```
 
-## Aggregate Functions
+## Aggregate Functions :
 - **COUNT()**
 - **MAX()**
 - **MIN()**
@@ -227,14 +217,14 @@ SELECT MAX(marks) FROM student;  -- Selects the maximum value from the 'marks' c
 SELECT AVG(marks) FROM student;  -- Selects the average value from the 'marks' column
 ```
 
-## Group By Clause
+## Group By Clause :
 ```sql
 SELECT city, COUNT(name)  -- Selects the 'city' column and the count of 'name' for each city
 FROM student
 GROUP BY city;  -- Groups the results by the 'city' column
 ```
 
-## Having Clause
+## Having Clause :
 ```sql
 SELECT COUNT(name), city  -- Selects the count of 'name' and the 'city' column
 FROM student
@@ -242,7 +232,7 @@ GROUP BY city  -- Groups the results by the 'city' column
 HAVING MAX(marks) > 90;  -- Filters groups where the maximum 'marks' is greater than 90
 ```
 
-## General Order of SQL Queries
+## General Order of SQL Queries :
 ```sql
 SELECT column(s)  -- Specifies the columns to be selected
 FROM table_name   -- Specifies the table to select from
@@ -252,7 +242,7 @@ HAVING condition    -- Filters groups based on the condition
 ORDER BY column(s) ASC;  -- Orders the results by the specified columns in ascending order
 ```
 
-## Update Query
+## Update Query :
 ```sql
 UPDATE table_name
 SET col1 = val1, col2 = val2  -- Updates the specified columns with new values
@@ -263,7 +253,7 @@ SET grade = "O"  -- Updates the 'grade' column to "O"
 WHERE grade = "A";  -- Filters rows where the 'grade' is "A"
 ```
 
-## Delete Query
+## Delete Query :
 ```sql
 DELETE FROM table_name
 WHERE condition;  -- Deletes rows based on the specified condition
@@ -272,7 +262,7 @@ DELETE FROM student
 WHERE marks < 33;  -- Deletes rows where 'marks' are less than 33
 ```
 
-## Cascading for Foreign Key
+## Cascading for Foreign Key :
 ### On Delete Cascade
 ```sql
 CREATE TABLE student (
@@ -284,7 +274,7 @@ CREATE TABLE student (
 );
 ```
 
-## Alter Table
+## Alter Table :
 ### Add Column
 ```sql
 ALTER TABLE table_name
@@ -333,12 +323,12 @@ ALTER TABLE student
 RENAME TO stu;  -- Renames the 'student' table to 'stu'
 ```
 
-## Truncate Table
+## Truncate Table :
 ```sql
 TRUNCATE TABLE table_name;  -- Deletes all rows from the table but keeps the table structure
 ```
 
-## Joins in SQL
+## Joins in SQL :
 Join is used to combine rows from two or more tables, based on a related column between them.
 
 ### Types of Joins
@@ -388,7 +378,7 @@ JOIN employee AS b
 ON a.id = b.manager_id;  -- Combines rows from the same table to find manager-employee relationships
 ```
 
-## Union
+## Union :
 Used to combine the result-set of two or more SELECT statements. Gives unique records.
 
 ### Example Union
@@ -398,7 +388,7 @@ UNION
 SELECT column(s) FROM tableB;  -- Combines the results of two SELECT statements and removes duplicates
 ```
 
-## SQL Subqueries
+## SQL Subqueries :
 A subquery or inner query or nested query is a query within another SQL query.
 
 ### Example Subquery
@@ -416,7 +406,7 @@ FROM student
 WHERE rollno IN (SELECT rollno FROM student WHERE rollno % 2 = 0);  -- Finds students with even roll numbers
 ```
 
-## MySQL Views
+## MySQL Views :
 A view is a virtual table based on the result-set of an SQL statement.
 
 ### Example View
