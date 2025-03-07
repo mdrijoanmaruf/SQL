@@ -1,462 +1,434 @@
 # SQL Notes
 
 ## Database
-A **database** is a structured collection of data stored digitally. It allows for efficient data management, retrieval, and manipulation. A **DBMS (Database Management System)** is software that interacts with the database, allowing users to create, read, update, and delete data.
-
-```sql
--- Example: Creating a database
-CREATE DATABASE my_database;
-
--- Example: Dropping a database
-DROP DATABASE my_database;
-```
-
----
+A database is a collection of data in a format that can be easily accessed (digital). A software application used to manage our database is called a DBMS (Database Management System).
 
 ## Types of Databases
-### Relational Databases
-Relational databases store data in **tables** (rows and columns). Each table represents an entity, and relationships between tables are established using **keys**. Examples include **MySQL**, **Oracle**, **SQL Server**, and **PostgreSQL**.
+### Relational
+Data stored in tables. Examples include MySQL, Oracle, SQL Server, and PostgreSQL.
 
-### Non-relational (NoSQL) Databases
-Non-relational databases store data in formats other than tables, such as key-value pairs, documents, or graphs. Example: **MongoDB**.
-
-```sql
--- Example: Relational databases use SQL to interact with data.
-SELECT * FROM users;  -- Retrieves all rows from the 'users' table.
-```
-
----
+### Non-relational (NoSQL)
+Data not stored in tables. Example: MongoDB.
 
 ## What is SQL?
-**SQL (Structured Query Language)** is a programming language used to interact with relational databases. It is used to perform **CRUD** operations:
-- **Create**: Insert data into a table.
-- **Read**: Retrieve data from a table.
-- **Update**: Modify existing data.
-- **Delete**: Remove data from a table.
-
-```sql
--- Example: CRUD operations
-INSERT INTO users (name, age) VALUES ('John', 25);  -- Create
-SELECT * FROM users;                                -- Read
-UPDATE users SET age = 26 WHERE name = 'John';      -- Update
-DELETE FROM users WHERE name = 'John';              -- Delete
-```
-
----
+SQL stands for Structured Query Language. It is a programming language used to interact with relational databases. It is used to perform CRUD operations:
+- Create
+- Read
+- Update
+- Delete
 
 ## Database Structure
-A database consists of **tables**, and each table contains **rows** (records) and **columns** (fields). Tables are related to each other using **keys**.
-
-```sql
--- Example: Database structure
--- Database: school
--- Tables: students, teachers, courses
-```
-
----
+- Database
+  - Table 1
+    - Data
+  - Table 2
+    - Data
 
 ## What is a Table?
-A **table** is a collection of related data organized in rows and columns. Each row represents a record, and each column represents a field (attribute).
-
-```sql
--- Example: Student Table
-CREATE TABLE student (
-    RollNo INT PRIMARY KEY,      -- Unique identifier for each student
-    Name VARCHAR(50),            -- Student's name
-    Class VARCHAR(10),           -- Student's class
-    DOB DATE,                    -- Date of birth
-    Gender CHAR(1),              -- Gender (M/F)
-    City VARCHAR(20),            -- City of residence
-    Marks INT                    -- Marks obtained
-);
-```
-
----
+### Example: Student Table
+| RollNo | Name    | Class | DOB        | Gender | City   | Marks |
+|--------|---------|-------|------------|--------|--------|-------|
+| 1      | Nanda   | X     | 1995-06-06 | M      | Agra   | 551   |
+| 2      | Saurabh | XII   | 1993-05-07 | M      | Mumbai | 462   |
+| 3      | Sonal   | XI    | 1994-05-06 | F      | Delhi  | 400   |
+| 4      | Trisla  | XII   | 1995-08-08 | F      | Mumbai | 450   |
+| 5      | Store   | XII   | 1995-10-08 | M      | Delhi  | 369   |
+| 6      | Marisla | XI    | 1994-12-12 | F      | Dubai  | 250   |
+| 7      | Neha    | X     | 1995-12-08 | F      | Moscow | 377   |
+| 8      | Mishant | X     | 1995-06-12 | M      | Moscow | 489   |
 
 ## Creating our First Database
-You can create a database using the `CREATE DATABASE` command and delete it using `DROP DATABASE`.
-
 ```sql
--- Example: Create a database
-CREATE DATABASE my_database;
-
--- Example: Drop a database
-DROP DATABASE my_database;
+CREATE DATABASE db_name;  -- Creates a new database
+DROP DATABASE db_name;    -- Deletes an existing database
 ```
-
----
 
 ## Creating our First Table
-Tables are created using the `CREATE TABLE` command. Each column has a **data type** and optional **constraints** (e.g., `PRIMARY KEY`, `NOT NULL`).
 
+#### Format :
 ```sql
--- Example: Create a table
-CREATE TABLE student (
-    id INT PRIMARY KEY,          -- Primary key column
-    name VARCHAR(50),            -- Student's name
-    age INT NOT NULL             -- Age cannot be NULL
+USE db_name;  -- Selects the database to use
+
+CREATE TABLE table_name (
+    column_name1 datatype constraint,  -- Defines the first column with its data type and constraints
+    column_name2 datatype constraint,  -- Defines the second column with its data type and constraints
+    column_name3 datatype constraint   -- Defines the third column with its data type and constraints
 );
 ```
+#### Example :
+```sql
+USE db_name;  -- Selects the database to use
 
----
+CREATE TABLE student (
+    id INT PRIMARY KEY,  -- Defines an integer column 'id' as the primary key
+    name VARCHAR(50),    -- Defines a string column 'name' with a maximum length of 50 characters
+    age INT NOT NULL     -- Defines an integer column 'age' that cannot be null
+);
+```
 
 ## SQL Datatypes
-Datatypes define the type of data that can be stored in a column. Common datatypes include:
-- **INT**: Integer values.
-- **VARCHAR**: Variable-length strings.
-- **DATE**: Date values.
-- **BOOLEAN**: True/False values.
-
-```sql
--- Example: Using datatypes
-CREATE TABLE employee (
-    id INT,                      -- Integer for employee ID
-    name VARCHAR(50),            -- String for employee name
-    hire_date DATE,              -- Date for hire date
-    is_active BOOLEAN            -- Boolean for active status
-);
-```
-
----
+| DATATYPE | DESCRIPTION | USAGE |
+|----------|-------------|-------|
+| CHAR     | string(0-255), fixed length | CHAR(50) |
+| VARCHAR  | string(0-255), up to given length | VARCHAR(50) |
+| BLOB     | string(0-65535), binary large object | BLOB(1000) |
+| INT      | integer(-2,147,483,648 to 2,147,483,647) | INT |
+| TINYINT  | integer(-128 to 127) | TINYINT |
+| BIGINT   | integer(-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807) | BIGINT |
+| BIT      | x-bit values, x from 1 to 64 | BIT(2) |
+| FLOAT    | Decimal number, precision to 23 digits | FLOAT |
+| DOUBLE   | Decimal number, 24 to 53 digits | DOUBLE |
+| BOOLEAN  | Boolean values 0 or 1 | BOOLEAN |
+| DATE     | date in format YYYY-MM-DD | DATE |
+| YEAR     | year in 4 digits format | YEAR |
 
 ## Types of SQL Commands
-SQL commands are categorized into:
-- **DDL (Data Definition Language)**: Create, alter, and drop database objects (e.g., `CREATE`, `ALTER`, `DROP`).
-- **DML (Data Manipulation Language)**: Insert, update, delete data (e.g., `INSERT`, `UPDATE`, `DELETE`).
-- **DQL (Data Query Language)**: Retrieve data using `SELECT`.
-- **DCL (Data Control Language)**: Grant or revoke permissions (e.g., `GRANT`, `REVOKE`).
-- **TCL (Transaction Control Language)**: Manage transactions (e.g., `COMMIT`, `ROLLBACK`).
-
-```sql
--- Example: DDL (Create Table)
-CREATE TABLE users (
-    id INT PRIMARY KEY,          -- Primary key column
-    name VARCHAR(50)             -- Name column
-);
-
--- Example: DML (Insert Data)
-INSERT INTO users (id, name) VALUES (1, 'Alice');  -- Insert a new row
-```
-
----
+- **DDL (Data Definition Language)**: CREATE, ALTER, RENAME, TRUNCATE, DROP
+- **DQL (Data Query Language)**: SELECT
+- **DML (Data Manipulation Language)**: SELECT, INSERT, UPDATE, DELETE
+- **DCL (Data Control Language)**: GRANT, REVOKE
+- **TCL (Transaction Control Language)**: START TRANSACTION, COMMIT, ROLLBACK
 
 ## Database Related Queries
-Common database-related queries include creating, dropping, and showing databases.
-
 ```sql
--- Example: Create a database
-CREATE DATABASE my_db;
-
--- Example: Drop a database
-DROP DATABASE my_db;
-
--- Example: Show all databases
-SHOW DATABASES;
+CREATE DATABASE db_name;  -- Creates a new database
+CREATE DATABASE IF NOT EXISTS db_name;  -- Creates a new database only if it does not already exist
+DROP DATABASE db_name;  -- Deletes an existing database
+DROP DATABASE IF EXISTS db_name;  -- Deletes an existing database only if it exists
+SHOW DATABASES;  -- Lists all databases
+SHOW TABLES;  -- Lists all tables in the current database
 ```
-
----
 
 ## Table Related Queries
 ### Create Table
-Tables are created using the `CREATE TABLE` command.
-
 ```sql
--- Example: Create a table
+CREATE TABLE table_name (
+    column_name1 datatype constraint,  -- Defines the first column with its data type and constraints
+    column_name2 datatype constraint   -- Defines the second column with its data type and constraints
+);
+
 CREATE TABLE student (
-    rollno INT PRIMARY KEY,      -- Primary key column
-    name VARCHAR(50)             -- Name column
+    rollno INT PRIMARY KEY,  -- Defines an integer column 'rollno' as the primary key
+    name VARCHAR(50)        -- Defines a string column 'name' with a maximum length of 50 characters
 );
 ```
 
 ### Select & View All Columns
-Use `SELECT *` to retrieve all columns from a table.
-
 ```sql
--- Example: Select all columns
-SELECT * FROM student;
+SELECT * FROM table_name;  -- Selects all columns from the specified table
+SELECT * FROM student;     -- Selects all columns from the 'student' table
 ```
 
 ### Insert Data
-Use `INSERT INTO` to add data to a table.
-
 ```sql
--- Example: Insert data
-INSERT INTO student (rollno, name)
-VALUES (101, 'Karan'), (102, 'Arjun');  -- Insert multiple rows
-```
+INSERT INTO table_name (col1, col2)  -- Inserts data into specified columns of the table
+VALUES (val1, val2),                 -- Inserts the first row of data
+       (val3, val4);                 -- Inserts the second row of data
 
----
+INSERT INTO student (rollno, name)   -- Inserts data into the 'student' table
+VALUES (101, "karan"),              -- Inserts the first row of data
+       (102, "arjun");              -- Inserts the second row of data
+```
 
 ## Keys
 ### Primary Key
-A **primary key** is a column (or set of columns) that uniquely identifies each row in a table. It cannot be NULL.
-
-```sql
--- Example: Primary Key
-CREATE TABLE student (
-    id INT PRIMARY KEY,          -- Primary key column
-    name VARCHAR(50)             -- Name column
-);
-```
+A column (or set of columns) in a table that uniquely identifies each row. There is only one primary key, and it should be NOT NULL.
 
 ### Foreign Key
-A **foreign key** is a column that refers to the primary key of another table. It creates a relationship between two tables.
-
-```sql
--- Example: Foreign Key
-CREATE TABLE orders (
-    order_id INT PRIMARY KEY,    -- Primary key column
-    product_id INT,              -- Foreign key column
-    FOREIGN KEY (product_id) REFERENCES products(id)  -- Links to products table
-);
-```
-
----
+A column (or set of columns) in a table that refers to the primary key in another table. There can be multiple foreign keys, and they can have duplicate and NULL values.
 
 ## Constraints
-Constraints enforce rules on data in a table. Common constraints include:
-- **NOT NULL**: Ensures a column cannot have NULL values.
-- **UNIQUE**: Ensures all values in a column are unique.
-- **PRIMARY KEY**: Combines `NOT NULL` and `UNIQUE`.
-- **FOREIGN KEY**: Links two tables.
-- **CHECK**: Ensures values meet a specific condition.
+- **NOT NULL**: Columns cannot have a NULL value.
+- **UNIQUE**: All values in the column are different.
+- **PRIMARY KEY**: Makes a column unique and NOT NULL.
+- **FOREIGN KEY**: Prevents actions that would destroy links between tables.
+- **DEFAULT**: Sets the default value of a column.
+- **CHECK**: Limits the values allowed in a column.
 
+### Example Constraints
 ```sql
--- Example: Constraints
-CREATE TABLE employee (
-    id INT PRIMARY KEY,          -- Primary key column
-    name VARCHAR(50) NOT NULL,   -- Name cannot be NULL
-    age INT CHECK (age >= 18)    -- Age must be 18 or older
+CREATE TABLE temp (
+    id INT NOT NULL,  -- Defines an integer column 'id' that cannot be null
+    PRIMARY KEY (id)  -- Sets 'id' as the primary key
+);
+
+CREATE TABLE city (
+    id INT PRIMARY KEY,  -- Defines an integer column 'id' as the primary key
+    city VARCHAR(50),    -- Defines a string column 'city' with a maximum length of 50 characters
+    age INT,             -- Defines an integer column 'age'
+    CONSTRAINT age_check CHECK (age >= 18 AND city="Delhi")  -- Adds a check constraint to ensure age is >= 18 and city is "Delhi"
 );
 ```
-
----
 
 ## Sample Table Creation
-Here’s an example of creating a table and inserting data.
-
 ```sql
--- Example: Create and insert data
+CREATE DATABASE college;  -- Creates a new database named 'college'
+USE college;  -- Selects the 'college' database
+
 CREATE TABLE student (
-    rollno INT PRIMARY KEY,      -- Primary key column
-    name VARCHAR(50),            -- Name column
-    marks INT NOT NULL,          -- Marks column (cannot be NULL)
-    grade VARCHAR(1),            -- Grade column
-    city VARCHAR(20)             -- City column
+    rollno INT PRIMARY KEY,  -- Defines an integer column 'rollno' as the primary key
+    name VARCHAR(50),       -- Defines a string column 'name' with a maximum length of 50 characters
+    marks INT NOT NULL,     -- Defines an integer column 'marks' that cannot be null
+    grade VARCHAR(1),       -- Defines a string column 'grade' with a maximum length of 1 character
+    city VARCHAR(20)        -- Defines a string column 'city' with a maximum length of 20 characters
 );
 
--- Insert data into the table
-INSERT INTO student (rollno, name, marks, grade, city)
-VALUES (101, 'Anil', 78, 'C', 'Pune'),
-       (102, 'Bhumika', 93, 'A', 'Mumbai');
+INSERT INTO student (rollno, name, marks, grade, city)  -- Inserts data into the 'student' table
+VALUES (101, "anil", 78, "C", "Pune"),                 -- Inserts the first row of data
+       (102, "bhumika", 93, "A", "Mumbai"),            -- Inserts the second row of data
+       (103, "chetan", 85, "B", "Mumbai"),             -- Inserts the third row of data
+       (104, "dhruv", 96, "A", "Delhi"),               -- Inserts the fourth row of data
+       (105, "emanuel", 12, "F", "Delhi"),             -- Inserts the fifth row of data
+       (106, "farah", 82, "B", "Delhi");               -- Inserts the sixth row of data
 ```
-
----
 
 ## Select in Detail
-The `SELECT` statement retrieves data from a table. You can select specific columns or all columns using `*`.
-
 ```sql
--- Example: Select specific columns
-SELECT name, marks FROM student;
-
--- Example: Select all columns
-SELECT * FROM student;
+SELECT col1, col2 FROM table_name;  -- Selects specific columns from the specified table
+SELECT * FROM table_name;           -- Selects all columns from the specified table
 ```
-
----
 
 ## Where Clause
-The `WHERE` clause filters records based on a condition.
-
 ```sql
--- Example: Where clause
-SELECT * FROM student WHERE marks > 80;  -- Retrieve students with marks > 80
-```
+SELECT col1, col2 FROM table_name
+WHERE condition;  -- Filters rows based on the specified condition
 
----
+SELECT * FROM student WHERE marks > 80;  -- Selects all columns from 'student' where marks are greater than 80
+SELECT * FROM student WHERE city = "Mumbai";  -- Selects all columns from 'student' where city is "Mumbai"
+```
 
 ## Operators in WHERE Clause
-Operators are used to define conditions in the `WHERE` clause:
 - **Arithmetic Operators**: +, -, *, /, %
-- **Comparison Operators**: =, !=, >, <, >=, <=
-- **Logical Operators**: AND, OR, NOT, IN, BETWEEN
+- **Comparison Operators**: =, !=, >, >=, <, <=
+- **Logical Operators**: AND, OR, NOT, IN, BETWEEN, ALL, LIKE, ANY
+- **Bitwise Operators**: &, |
 
+### Example Operators
 ```sql
--- Example: Using operators
-SELECT * FROM student WHERE marks > 80 AND city = 'Mumbai';  -- Retrieve students with marks > 80 and from Mumbai
+SELECT * FROM student WHERE marks > 80 AND city = "Mumbai";  -- Selects rows where marks > 80 and city is "Mumbai"
+SELECT * FROM student WHERE marks > 90 OR city = "Mumbai";   -- Selects rows where marks > 90 or city is "Mumbai"
+SELECT * FROM student WHERE marks BETWEEN 80 AND 90;         -- Selects rows where marks are between 80 and 90
+SELECT * FROM student WHERE city IN ("Delhi", "Mumbai");     -- Selects rows where city is either "Delhi" or "Mumbai"
+SELECT * FROM student WHERE city NOT IN ("Delhi", "Mumbai"); -- Selects rows where city is neither "Delhi" nor "Mumbai"
 ```
-
----
 
 ## Limit Clause
-The `LIMIT` clause restricts the number of rows returned.
-
 ```sql
--- Example: Limit clause
-SELECT * FROM student LIMIT 3;  -- Retrieve only 3 rows
+SELECT * FROM student LIMIT 3;  -- Selects the first 3 rows from the 'student' table
 ```
-
----
 
 ## Order By Clause
-The `ORDER BY` clause sorts the result set in ascending or descending order.
-
 ```sql
--- Example: Order by clause
-SELECT * FROM student ORDER BY marks DESC;  -- Sort students by marks in descending order
+SELECT * FROM student
+ORDER BY city ASC;  -- Orders the rows by the 'city' column in ascending order
 ```
-
----
 
 ## Aggregate Functions
-Aggregate functions perform calculations on a set of values and return a single value. Common functions include:
-- **COUNT()**: Counts the number of rows.
-- **MAX()**: Returns the maximum value.
-- **MIN()**: Returns the minimum value.
-- **SUM()**: Returns the sum of values.
-- **AVG()**: Returns the average value.
+- **COUNT()**
+- **MAX()**
+- **MIN()**
+- **SUM()**
+- **AVG()**
 
+### Example Aggregate Functions
 ```sql
--- Example: Aggregate functions
-SELECT AVG(marks) FROM student;  -- Calculate the average marks of all students
+SELECT MAX(marks) FROM student;  -- Selects the maximum value from the 'marks' column
+SELECT AVG(marks) FROM student;  -- Selects the average value from the 'marks' column
 ```
-
----
 
 ## Group By Clause
-The `GROUP BY` clause groups rows that have the same values into summary rows.
-
 ```sql
--- Example: Group by clause
-SELECT city, COUNT(name) FROM student GROUP BY city;  -- Count the number of students in each city
+SELECT city, COUNT(name)  -- Selects the 'city' column and the count of 'name' for each city
+FROM student
+GROUP BY city;  -- Groups the results by the 'city' column
 ```
-
----
 
 ## Having Clause
-The `HAVING` clause filters groups based on a condition. It is used after `GROUP BY`.
-
 ```sql
--- Example: Having clause
-SELECT city, COUNT(name) FROM student GROUP BY city HAVING COUNT(name) > 1;  -- Retrieve cities with more than 1 student
+SELECT COUNT(name), city  -- Selects the count of 'name' and the 'city' column
+FROM student
+GROUP BY city  -- Groups the results by the 'city' column
+HAVING MAX(marks) > 90;  -- Filters groups where the maximum 'marks' is greater than 90
 ```
-
----
 
 ## General Order of SQL Queries
-The general order of SQL queries is:
-1. **SELECT**: Choose columns.
-2. **FROM**: Specify the table.
-3. **WHERE**: Filter rows.
-4. **GROUP BY**: Group rows.
-5. **HAVING**: Filter groups.
-6. **ORDER BY**: Sort the result.
-
 ```sql
--- Example: General order
-SELECT city, COUNT(name) FROM student WHERE marks > 80 GROUP BY city HAVING COUNT(name) > 1 ORDER BY city;
+SELECT column(s)  -- Specifies the columns to be selected
+FROM table_name   -- Specifies the table to select from
+WHERE condition   -- Filters rows based on the condition
+GROUP BY column(s)  -- Groups the results by the specified columns
+HAVING condition    -- Filters groups based on the condition
+ORDER BY column(s) ASC;  -- Orders the results by the specified columns in ascending order
 ```
-
----
 
 ## Update Query
-The `UPDATE` statement modifies existing records in a table.
-
 ```sql
--- Example: Update query
-UPDATE student SET grade = 'A' WHERE marks > 90;  -- Update grade to 'A' for students with marks > 90
-```
+UPDATE table_name
+SET col1 = val1, col2 = val2  -- Updates the specified columns with new values
+WHERE condition;              -- Filters rows to be updated based on the condition
 
----
+UPDATE student
+SET grade = "O"  -- Updates the 'grade' column to "O"
+WHERE grade = "A";  -- Filters rows where the 'grade' is "A"
+```
 
 ## Delete Query
-The `DELETE` statement removes records from a table.
-
 ```sql
--- Example: Delete query
-DELETE FROM student WHERE marks < 33;  -- Delete students with marks < 33
+DELETE FROM table_name
+WHERE condition;  -- Deletes rows based on the specified condition
+
+DELETE FROM student
+WHERE marks < 33;  -- Deletes rows where 'marks' are less than 33
 ```
 
----
-
 ## Cascading for Foreign Key
-Cascading ensures that changes in the parent table are reflected in the child table.
-
+### On Delete Cascade
 ```sql
--- Example: Cascading
 CREATE TABLE student (
-    id INT PRIMARY KEY,          -- Primary key column
-    courseID INT,                -- Foreign key column
-    FOREIGN KEY (courseID) REFERENCES course(id) ON DELETE CASCADE  -- Delete child rows when parent row is deleted
+    id INT PRIMARY KEY,  -- Defines an integer column 'id' as the primary key
+    courseID INT,        -- Defines an integer column 'courseID'
+    FOREIGN KEY(courseID) REFERENCES course(id)  -- Defines 'courseID' as a foreign key referencing 'id' in the 'course' table
+    ON DELETE CASCADE    -- Automatically deletes rows in 'student' when referenced rows in 'course' are deleted
+    ON UPDATE CASCADE    -- Automatically updates rows in 'student' when referenced rows in 'course' are updated
 );
 ```
 
----
-
 ## Alter Table
-The `ALTER TABLE` statement modifies the structure of a table.
-
+### Add Column
 ```sql
--- Example: Alter table
-ALTER TABLE student ADD COLUMN age INT;  -- Add a new column
-ALTER TABLE student DROP COLUMN age;     -- Drop a column
+ALTER TABLE table_name
+ADD COLUMN column_name datatype constraint;  -- Adds a new column to the table
 ```
 
----
+### Drop Column
+```sql
+ALTER TABLE table_name
+DROP COLUMN column_name;  -- Deletes an existing column from the table
+```
+
+### Rename Table
+```sql
+ALTER TABLE table_name
+RENAME TO new_table_name;  -- Renames the table
+```
+
+### Change Column
+```sql
+ALTER TABLE table_name
+CHANGE COLUMN old_name new_name new_datatype new_constraint;  -- Changes the name and properties of an existing column
+```
+
+### Modify Column
+```sql
+ALTER TABLE table_name
+MODIFY col_name new_datatype new_constraint;  -- Modifies the properties of an existing column
+```
+
+### Example Alter Table
+```sql
+ALTER TABLE student
+ADD COLUMN age INT NOT NULL DEFAULT 19;  -- Adds a new column 'age' with a default value of 19
+
+ALTER TABLE student
+MODIFY age VARCHAR(2);  -- Changes the data type of the 'age' column to VARCHAR(2)
+
+ALTER TABLE student
+CHANGE age stu_age INT;  -- Renames the 'age' column to 'stu_age' and changes its data type to INT
+
+ALTER TABLE student
+DROP COLUMN stu_age;  -- Deletes the 'stu_age' column
+
+ALTER TABLE student
+RENAME TO stu;  -- Renames the 'student' table to 'stu'
+```
 
 ## Truncate Table
-The `TRUNCATE TABLE` statement deletes all data from a table but keeps the structure.
-
 ```sql
--- Example: Truncate table
-TRUNCATE TABLE student;  -- Delete all rows from the 'student' table
+TRUNCATE TABLE table_name;  -- Deletes all rows from the table but keeps the table structure
 ```
-
----
 
 ## Joins in SQL
-Joins combine rows from two or more tables based on a related column.
+Join is used to combine rows from two or more tables, based on a related column between them.
 
 ### Types of Joins
-- **Inner Join**: Returns matching rows from both tables.
-- **Left Join**: Returns all rows from the left table and matching rows from the right table.
-- **Right Join**: Returns all rows from the right table and matching rows from the left table.
-- **Full Join**: Returns all rows when there is a match in either table.
+- **Inner Join**: Returns records that have matching values in both tables.
+- **Left Join**: Returns all records from the left table, and the matched records from the right table.
+- **Right Join**: Returns all records from the right table, and the matched records from the left table.
+- **Full Join**: Returns all records when there is a match in either left or right table.
 
+### Inner Join Example
 ```sql
--- Example: Inner Join
-SELECT * FROM student INNER JOIN course ON student.id = course.student_id;  -- Retrieve matching rows from both tables
+SELECT *
+FROM student
+INNER JOIN course
+ON student.student_id = course.student_id;  -- Combines rows from 'student' and 'course' where 'student_id' matches
 ```
 
----
+### Left Join Example
+```sql
+SELECT *
+FROM student AS s
+LEFT JOIN course AS c
+ON s.student_id = c.student_id;  -- Returns all rows from 'student' and matched rows from 'course'
+```
+
+### Right Join Example
+```sql
+SELECT *
+FROM student AS s
+RIGHT JOIN course AS c
+ON s.student_id = c.student_id;  -- Returns all rows from 'course' and matched rows from 'student'
+```
+
+### Full Join Example
+```sql
+SELECT * FROM student AS a
+LEFT JOIN course AS b ON a.id = b.id  -- Returns all rows from 'student' and matched rows from 'course'
+UNION
+SELECT * FROM student AS a
+RIGHT JOIN course AS b ON a.id = b.id;  -- Returns all rows from 'course' and matched rows from 'student'
+```
+
+### Self Join Example
+```sql
+SELECT a.name AS manager_name, b.name
+FROM employee AS a
+JOIN employee AS b
+ON a.id = b.manager_id;  -- Combines rows from the same table to find manager-employee relationships
+```
 
 ## Union
-The `UNION` operator combines the result sets of two or more `SELECT` statements.
+Used to combine the result-set of two or more SELECT statements. Gives unique records.
 
+### Example Union
 ```sql
--- Example: Union
-SELECT name FROM student UNION SELECT name FROM teacher;  -- Combine names from student and teacher tables
+SELECT column(s) FROM tableA
+UNION
+SELECT column(s) FROM tableB;  -- Combines the results of two SELECT statements and removes duplicates
 ```
-
----
 
 ## SQL Subqueries
-A **subquery** is a query nested inside another query. It is used to perform complex queries.
+A subquery or inner query or nested query is a query within another SQL query.
 
+### Example Subquery
 ```sql
--- Example: Subquery
-SELECT name FROM student WHERE marks > (SELECT AVG(marks) FROM student);  -- Retrieve students with marks above the average
+SELECT column(s)
+FROM table_name
+WHERE col_name operator
+(SELECT column(s) FROM table_name);  -- Uses the result of the inner query in the outer query
 ```
 
----
+### Example: Find Names of Students with Even Roll Numbers
+```sql
+SELECT name
+FROM student
+WHERE rollno IN (SELECT rollno FROM student WHERE rollno % 2 = 0);  -- Finds students with even roll numbers
+```
 
 ## MySQL Views
-A **view** is a virtual table based on the result set of an SQL query. It simplifies complex queries and provides a layer of security.
+A view is a virtual table based on the result-set of an SQL statement.
 
+### Example View
 ```sql
--- Example: Create a view
-CREATE VIEW top_students AS SELECT name, marks FROM student WHERE marks > 90;  -- Create a view for top students
-SELECT * FROM top_students;  -- Retrieve data from the view
-```
-
+CREATE VIEW view1 AS
+SELECT roll
