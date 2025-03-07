@@ -28,14 +28,14 @@ SQL stands for Structured Query Language. It is a programming language used to i
 ### Example: Student Table
 | RollNo | Name    | Class | DOB        | Gender | City   | Marks |
 |--------|---------|-------|------------|--------|--------|-------|
-| 1      | Nanda   | X     | 1995-06-06 | M      | Agra   | 551   |
-| 2      | Saurabh | XII   | 1993-05-07 | M      | Mumbai | 462   |
-| 3      | Sonal   | XI    | 1994-05-06 | F      | Delhi  | 400   |
-| 4      | Trisla  | XII   | 1995-08-08 | F      | Mumbai | 450   |
-| 5      | Store   | XII   | 1995-10-08 | M      | Delhi  | 369   |
-| 6      | Marisla | XI    | 1994-12-12 | F      | Dubai  | 250   |
-| 7      | Neha    | X     | 1995-12-08 | F      | Moscow | 377   |
-| 8      | Mishant | X     | 1995-06-12 | M      | Moscow | 489   |
+| 1      | Rijoan   | X     | 1995-06-06 | M      | Dhaka   | 551   |
+| 2      | Rashed | XII   | 1993-05-07 | M      | Cumilla | 462   |
+| 3      | Anik   | XI    | 1994-05-06 | F      | Chittagong  | 400   |
+| 4      | Reyad  | XII   | 1995-08-08 | F      | Rajshahi | 450   |
+| 5      | Rihan   | XII   | 1995-10-08 | M      | Barishal  | 369   |
+| 6      | Arman | XI    | 1994-12-12 | F      | Dubai  | 250   |
+| 7      | Ahnaf    | X     | 1995-12-08 | F      | Moscow | 377   |
+| 8      | Rifat | X     | 1995-06-12 | M      | Moscow | 489   |
 
 ## Creating our First Database
 ```sql
@@ -102,11 +102,6 @@ SHOW TABLES;  -- Lists all tables in the current database
 ## Table Related Queries
 ### Create Table
 ```sql
-CREATE TABLE table_name (
-    column_name1 datatype constraint,  -- Defines the first column with its data type and constraints
-    column_name2 datatype constraint   -- Defines the second column with its data type and constraints
-);
-
 CREATE TABLE student (
     rollno INT PRIMARY KEY,  -- Defines an integer column 'rollno' as the primary key
     name VARCHAR(50)        -- Defines a string column 'name' with a maximum length of 50 characters
@@ -121,10 +116,6 @@ SELECT * FROM student;     -- Selects all columns from the 'student' table
 
 ### Insert Data
 ```sql
-INSERT INTO table_name (col1, col2)  -- Inserts data into specified columns of the table
-VALUES (val1, val2),                 -- Inserts the first row of data
-       (val3, val4);                 -- Inserts the second row of data
-
 INSERT INTO student (rollno, name)   -- Inserts data into the 'student' table
 VALUES (101, "karan"),              -- Inserts the first row of data
        (102, "arjun");              -- Inserts the second row of data
