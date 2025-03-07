@@ -117,8 +117,8 @@ SELECT * FROM student;     -- Selects all columns from the 'student' table
 ### Insert Data
 ```sql
 INSERT INTO student (rollno, name)   -- Inserts data into the 'student' table
-VALUES (101, "karan"),              -- Inserts the first row of data
-       (102, "arjun");              -- Inserts the second row of data
+VALUES (101, "Rijaon"),              -- Inserts the first row of data
+       (102, "Saif");              -- Inserts the second row of data
 ```
 
 ## Keys
@@ -147,7 +147,7 @@ CREATE TABLE city (
     id INT PRIMARY KEY,  -- Defines an integer column 'id' as the primary key
     city VARCHAR(50),    -- Defines a string column 'city' with a maximum length of 50 characters
     age INT,             -- Defines an integer column 'age'
-    CONSTRAINT age_check CHECK (age >= 18 AND city="Delhi")  -- Adds a check constraint to ensure age is >= 18 and city is "Delhi"
+    CONSTRAINT age_check CHECK (age >= 18 AND city="Dhaka")  -- Adds a check constraint to ensure age is >= 18 and city is "Dhaka"
 );
 ```
 
@@ -168,9 +168,9 @@ INSERT INTO student (rollno, name, marks, grade, city)  -- Inserts data into the
 VALUES (101, "anil", 78, "C", "Pune"),                 -- Inserts the first row of data
        (102, "bhumika", 93, "A", "Mumbai"),            -- Inserts the second row of data
        (103, "chetan", 85, "B", "Mumbai"),             -- Inserts the third row of data
-       (104, "dhruv", 96, "A", "Delhi"),               -- Inserts the fourth row of data
-       (105, "emanuel", 12, "F", "Delhi"),             -- Inserts the fifth row of data
-       (106, "farah", 82, "B", "Delhi");               -- Inserts the sixth row of data
+       (104, "dhruv", 96, "A", "Dhaka"),               -- Inserts the fourth row of data
+       (105, "emanuel", 12, "F", "Dhaka"),             -- Inserts the fifth row of data
+       (106, "farah", 82, "B", "Dhaka");               -- Inserts the sixth row of data
 ```
 
 ## Select in Detail
@@ -199,8 +199,8 @@ SELECT * FROM student WHERE city = "Mumbai";  -- Selects all columns from 'stude
 SELECT * FROM student WHERE marks > 80 AND city = "Mumbai";  -- Selects rows where marks > 80 and city is "Mumbai"
 SELECT * FROM student WHERE marks > 90 OR city = "Mumbai";   -- Selects rows where marks > 90 or city is "Mumbai"
 SELECT * FROM student WHERE marks BETWEEN 80 AND 90;         -- Selects rows where marks are between 80 and 90
-SELECT * FROM student WHERE city IN ("Delhi", "Mumbai");     -- Selects rows where city is either "Delhi" or "Mumbai"
-SELECT * FROM student WHERE city NOT IN ("Delhi", "Mumbai"); -- Selects rows where city is neither "Delhi" nor "Mumbai"
+SELECT * FROM student WHERE city IN ("Dhaka", "Mumbai");     -- Selects rows where city is either "Dhaka" or "Mumbai"
+SELECT * FROM student WHERE city NOT IN ("Dhaka", "Mumbai"); -- Selects rows where city is neither "Dhaka" nor "Mumbai"
 ```
 
 ## Limit Clause
