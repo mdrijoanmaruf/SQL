@@ -413,3 +413,4 @@ A view is a virtual table based on the result-set of an SQL statement.
 ```sql
 CREATE VIEW view1 AS
 SELECT roll
+```
