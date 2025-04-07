@@ -1,4 +1,8 @@
+## Lecture 2
+
 ### **1. Basic SQL SELECT Statement**
+
+
 ```sql
 SELECT [DISTINCT] {*, column [alias], ...} FROM table;
 ```
@@ -79,4 +83,72 @@ SELECT [DISTINCT] {*, column [alias], ...} FROM table;
 ```sql
 DESCRIBE dept;
 ```
+---
+
+## Lecture 5
+
+### 🔶 **Key Concepts of E-R Modeling**
+
+#### ✅ **E-R Diagram Elements**
+- **Rectangles** = Entity sets  
+- **Diamonds** = Relationship sets  
+- **Ellipses** = Attributes  
+  - *Double ellipses*: Multivalued attributes  
+  - *Dashed ellipses*: Derived attributes  
+- **Underlined attributes** = Primary keys  
+- **Lines** link attributes to entities and relationships
+
+---
+
+### 👤 **Entity Sets**
+- Entities = Distinct objects (e.g., person, company)
+- Entity sets = Collection of similar entities
+- Entities have **attributes** (e.g., name, address)
+
+---
+
+### 🧾 **Attributes**
+- **Simple** vs **Composite** (e.g., name vs full address)
+- **Single-valued** vs **Multivalued** (e.g., one phone vs multiple phones)
+- **Derived attributes** = Calculated from other attributes (e.g., age from DOB)
+- **Domain** = Allowed values for an attribute
+
+---
+
+### 🔗 **Relationship Sets**
+- Associations among entities  
+  - e.g., A *borrower* relates **customer** and **loan**
+- Can include **attributes** too
+- **Degree** of relationship = number of entities involved  
+  - Most are **binary** (2 entities)
+
+---
+
+### 🔢 **Mapping Cardinalities** (Constraints)
+Defines how many entities participate in a relationship:
+- **One-to-One**
+- **One-to-Many**
+- **Many-to-One**
+- **Many-to-Many**
+
+Use lines:
+- **→** for "one"
+- **—** for "many"
+
+---
+
+### 📚 **ER Diagram Example – Library System**
+Scenario includes:
+- **Member** (memberNo, name, address [house, street, city])
+- **Book** (bookID, name, ISBN, edition)
+- **Author** (authorID, name)
+- **Category** (categoryNo, name)
+- **Borrowing** (date, copyNo)
+- **Reservation** (date)
+
+Key relationships:
+- Member **rents** many books → One-to-Many
+- Member **reserves** many books, and books can be **reserved** by many → Many-to-Many
+- Book **written by** one or more authors → Many-to-Many
+- Book **belongs to** one category → Many-to-One
 
