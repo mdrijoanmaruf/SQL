@@ -293,3 +293,152 @@ ORDER BY SUM(sal);
 -- Nested group functions
 SELECT MAX(AVG(sal)) FROM emp GROUP BY deptno;
 ```
+
+
+
+
+## Short Questions
+
+### **Lecture 01: Database Terminology**
+1. **What is data?**  
+   - Raw facts and figures that on their own have no meaning.  
+
+2. **What is information?**  
+   - Data that has been processed within a context to give it meaning.  
+
+3. **What is knowledge?**  
+   - An awareness and understanding of a set of information and how it can be used to support a specific task.  
+
+4. **What is a database?**  
+   - A structured set of data held in a computer, accessible in various ways.  
+
+5. **What is SQL?**  
+   - Structured Query Language, used to communicate with a database.  
+
+---
+
+### **Lecture 02: Writing Basic SQL Statements**
+6. **What is the basic structure of a SELECT statement?**  
+   - `SELECT [columns] FROM [table];`  
+
+7. **How do you eliminate duplicate rows in a query result?**  
+   - Use the `DISTINCT` keyword.  
+
+8. **What is the purpose of the concatenation operator in SQL?**  
+   - To combine columns or strings into a single output column.  
+
+9. **How do you display the structure of a table in SQL*Plus?**  
+   - Use the `DESCRIBE` or `DESC` command.  
+
+10. **What is the difference between SQL and SQL*Plus?**  
+    - SQL is a language for querying databases, while SQL*Plus is an Oracle tool for executing SQL statements and managing queries.  
+
+---
+
+### **Lecture 03: Basic Concepts**
+11. **What is a DBMS?**  
+    - Database Management System: software that manages databases, providing efficient data storage and retrieval.  
+
+12. **What are the drawbacks of using file systems for data storage?**  
+    - Data redundancy, inconsistency, difficulty in accessing data, and lack of atomicity in updates.  
+
+13. **What are the levels of data abstraction in a database?**  
+    - Physical, logical, and view levels.  
+
+14. **What is the difference between physical and logical data independence?**  
+    - Physical independence: changing storage without affecting the logical schema.  
+    - Logical independence: changing the logical schema without affecting applications.  
+
+15. **What is a data model?**  
+    - A collection of tools for describing data, relationships, semantics, and constraints.  
+
+---
+
+### **Lecture 04: Restricting and Sorting Data**
+16. **How do you restrict rows returned by a query?**  
+    - Use the `WHERE` clause.  
+
+17. **What operator is used to search for patterns in a column?**  
+    - The `LIKE` operator with wildcards (`%` for multiple characters, `_` for one character).  
+
+18. **How do you sort query results in descending order?**  
+    - Use `ORDER BY [column] DESC;`.  
+
+19. **What is the purpose of the `IS NULL` operator?**  
+    - To test for null values in a column.  
+
+20. **What are the logical operators in SQL?**  
+    - `AND`, `OR`, and `NOT`.  
+
+---
+
+### **Lecture 05: Entity-Relationship Model (Part 1)**
+21. **What is an entity set?**  
+    - A set of entities of the same type sharing the same properties.  
+
+22. **What are the types of attributes in an ER diagram?**  
+    - Simple, composite, single-valued, multi-valued, and derived.  
+
+23. **What is a relationship set?**  
+    - An association among several entities.  
+
+24. **What are the mapping cardinalities in a relationship?**  
+    - One-to-one, one-to-many, many-to-one, and many-to-many.  
+
+25. **What does a diamond represent in an ER diagram?**  
+    - A relationship set.  
+
+---
+
+### **Lecture 06: Single-Row Functions**
+26. **What are single-row functions?**  
+    - Functions that manipulate data items, return one result per row, and can modify the data type.  
+
+27. **What is the purpose of the `NVL` function?**  
+    - To replace null values with a specified value.  
+
+28. **How do you convert a date to a string in SQL?**  
+    - Use the `TO_CHAR` function.  
+
+29. **What does the `ROUND` function do?**  
+    - Rounds a numeric value to a specified decimal place.  
+
+30. **What is the difference between `TRUNC` and `ROUND`?**  
+    - `TRUNC` truncates without rounding, while `ROUND` rounds to the nearest value.  
+
+---
+
+### **Lecture 07: Entity-Relationship Model (Part 2)**
+31. **What is total participation in an ER diagram?**  
+    - Every entity in the entity set must participate in at least one relationship.  
+
+32. **What is a weak entity set?**  
+    - An entity set without a primary key, dependent on another entity set for identification.  
+
+33. **What is generalization in ER modeling?**  
+    - A bottom-up approach where lower-level entities combine to form a higher-level entity.  
+
+34. **What is specialization in ER modeling?**  
+    - A top-down approach where a higher-level entity is broken down into lower-level entities.  
+
+35. **What is aggregation in ER modeling?**  
+    - Treating a relationship between two entities as a single entity.  
+
+---
+
+### **Lecture 08: Aggregate Functions**
+36. **What are aggregate functions?**  
+    - Functions that operate on sets of rows to return one result per group (e.g., `AVG`, `SUM`, `COUNT`).  
+
+37. **How do you filter groups in a query?**  
+    - Use the `HAVING` clause.  
+
+38. **What is the difference between `WHERE` and `HAVING`?**  
+    - `WHERE` filters rows before grouping, while `HAVING` filters groups after grouping.  
+
+39. **Can you nest group functions? Give an example.**  
+    - Yes, e.g., `SELECT MAX(AVG(sal)) FROM emp GROUP BY deptno;`.  
+
+40. **What does the `COUNT(*)` function return?**  
+    - The number of rows in a table, including duplicates and nulls.  
+
