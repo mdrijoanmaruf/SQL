@@ -247,7 +247,3 @@ DROP SEQUENCE emp_seq;  -- Deletes the sequence
 - `CREATE SEQUENCE` - Auto-number generator
 - `NEXTVAL/CURRVAL` - Get next/current sequence value
 
-These notes provide **clear explanations** with **real-world examples** for all key database operations. Each concept is presented with:
-1. **Purpose** - Why it's used
-2. **Syntax** - How to write it (as comments)
-3. **Example** - Practical implementation
